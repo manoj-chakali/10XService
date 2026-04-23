@@ -1,4 +1,4 @@
-package com.example.UserAuthentication.Config;
+package com.example.Services10x.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,8 +24,8 @@ public class BasicAuthConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth->auth
 
-                        .requestMatchers("/api/admin/create", "/api/user/create").permitAll()
-                        .requestMatchers("/api/GetAllAdmins", "/api/GetAllUsers").hasRole("ADMIN")
+                        .requestMatchers("/api/provider/register", "/api/admin/register","/api/customer/register").permitAll()
+                        .requestMatchers("/api/GetAllAdmins", "/api/GetAllProviders","/api/GetAllCustomers").hasRole("ADMIN")
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults());

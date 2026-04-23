@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/UserAuthentication.iml" filepath="$PROJECT_DIR$/.idea/UserAuthentication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Services10x.iml" filepath="$PROJECT_DIR$/.idea/Services10x.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10xService/UserAuthentication.iml" filepath="$PROJECT_DIR$/10xService/UserAuthentication.iml" />
     </modules>
   </component>
 </project>

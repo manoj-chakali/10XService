@@ -1,14 +1,9 @@
-package com.example.UserAuthentication.Model;
+package com.example.Services10x.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
-import org.springframework.aot.generate.GenerationContext;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,13 +23,13 @@ public class User implements UserDetails {
     String username;
 
     String password;
-
-    String role;
+    @Enumerated(EnumType.STRING)
+    UserRoles role;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of((new SimpleGrantedAuthority(role)));
+        return List.of((new SimpleGrantedAuthority(role.name())));
     }
 
     @Override

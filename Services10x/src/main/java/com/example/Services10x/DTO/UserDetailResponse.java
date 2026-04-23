@@ -1,4 +1,4 @@
-package com.example.UserAuthentication.DTO;
+package com.example.Services10x.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

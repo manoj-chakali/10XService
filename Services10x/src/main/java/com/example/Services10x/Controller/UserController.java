@@ -1,9 +1,10 @@
-package com.example.UserAuthentication.Controller;
+package com.example.Services10x.Controller;
 
-import com.example.UserAuthentication.DTO.UserDetailResponse;
-import com.example.UserAuthentication.Model.User;
-import com.example.UserAuthentication.Repository.UserRepository;
-import com.example.UserAuthentication.Service.UserService;
+import com.example.Services10x.DTO.UserDetailResponse;
+import com.example.Services10x.Model.User;
+import com.example.Services10x.Model.UserRoles;
+import com.example.Services10x.Repository.UserRepository;
+import com.example.Services10x.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,24 +29,34 @@ public class UserController {
 
 
 
-    @PostMapping("/admin/create")
+    @PostMapping("/admin/register")
     public String RegisterAdmin(@RequestBody User user){
         if(userRepository.findByusername(user.getUsername()).isPresent()) {
             return "Username already exists";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_ADMIN");
+        user.setRole(UserRoles.ROLE_ADMIN);
         userRepository.save(user);
         return "Admin Saved Successfully";
     }
 
-    @PostMapping("/user/create")
-    public String RegisterUser(@RequestBody User user){
+    @PostMapping("/provider/register")
+    public String RegisterProvider(@RequestBody User user){
         if(userRepository.findByusername(user.getUsername()).isPresent()) {
             return "Username already exists";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_USER");
+        user.setRole(UserRoles.ROLE_PROVIDER);
+        userRepository.save(user);
+        return "User Saved Successfully";
+    }
+    @PostMapping("/customer/register")
+    public String RegisterCustomer(@RequestBody User user){
+        if(userRepository.findByusername(user.getUsername()).isPresent()) {
+            return "Username already exists";
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(UserRoles.ROLE_CUSTOMER);
         userRepository.save(user);
         return "User Saved Successfully";
     }
@@ -56,7 +67,7 @@ public class UserController {
          UserDetailResponse userDetailResponse1 = new UserDetailResponse();
          userDetailResponse1.setUsername(user1.getUsername());
          userDetailResponse1.setPassword(user1.getPassword());
-         userDetailResponse1.setRole(user1.getRole());
+         userDetailResponse1.setRole(String.valueOf(user1.getRole()));
 
          return Optional.of(userDetailResponse1);
 
@@ -64,13 +75,24 @@ public class UserController {
 
     @GetMapping("/GetAllAdmins")
     public List<User> GetAllAdmins(){
-        return userRepository.findByRole("ROLE_ADMIN");
+        return userRepository.findByRole(UserRoles.ROLE_ADMIN);
     }
 
-    @GetMapping("/GetAllUsers")
-    public List<User>GetAllUsers(){
-        return userRepository.findByRole("ROLE_USER");
+    @GetMapping("/GetAllProviders")
+    public List<User>GetAllProviders(){
+      //  System.out.println("entered in Getallusers");
+        return userRepository.findByRole(UserRoles.ROLE_PROVIDER);
+
     }
+
+
+    @GetMapping("/GetAllCustomers")
+    public List<User>GetAllCustomers(){
+      //  System.out.println("entered in Getallusers");
+        return userRepository.findByRole(UserRoles.ROLE_CUSTOMER);
+
+    }
+
 
     @DeleteMapping("/admin/Deleting/{username}")
     public String DeleteByUserName(@PathVariable String username){

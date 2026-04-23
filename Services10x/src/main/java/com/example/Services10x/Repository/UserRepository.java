@@ -1,6 +1,7 @@
-package com.example.UserAuthentication.Repository;
+package com.example.Services10x.Repository;
 
-import com.example.UserAuthentication.Model.User;
+import com.example.Services10x.Model.User;
+import com.example.Services10x.Model.UserRoles;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +17,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     Optional<User> findByusername(String username);
 
-    List<User> findByRole(String role);
+    List<User> findByRole(UserRoles role);
 
     @Modifying
     @Transactional

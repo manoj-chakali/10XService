@@ -1,7 +1,6 @@
-package com.example.UserAuthentication.Service;
+package com.example.Services10x.Service;
 
-import com.example.UserAuthentication.Model.User;
-import com.example.UserAuthentication.Repository.UserRepository;
+import com.example.Services10x.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
