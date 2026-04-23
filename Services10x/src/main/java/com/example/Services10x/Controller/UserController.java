@@ -78,6 +78,7 @@ public class UserController {
         return userRepository.findByRole(UserRoles.ROLE_ADMIN);
     }
 
+    //Added by Siva
     @GetMapping("/GetAllProviders")
     public List<User>GetAllProviders(){
       //  System.out.println("entered in Getallusers");
