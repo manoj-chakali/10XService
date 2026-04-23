@@ -72,7 +72,6 @@ public class UserController {
         return userRepository.findByRole("ROLE_USER");
     }
 
-    //just i adding the comments for this api call
     @DeleteMapping("/admin/Deleting/{username}")
     public String DeleteByUserName(@PathVariable String username){
         if(userRepository.findByusername(username).isPresent()) {
