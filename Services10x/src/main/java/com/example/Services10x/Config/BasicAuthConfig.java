@@ -44,4 +44,6 @@ public class BasicAuthConfig {
         return new ProviderManager(daoAuthenticationProvider);
 
     }
+
+
 }

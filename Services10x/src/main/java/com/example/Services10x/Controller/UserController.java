@@ -78,12 +78,14 @@ public class UserController {
         return userRepository.findByRole(UserRoles.ROLE_ADMIN);
     }
 
-    @GetMapping("/GetAllProviders")
-    public List<User>GetAllProviders(){
-      //  System.out.println("entered in Getallusers");
-        return userRepository.findByRole(UserRoles.ROLE_PROVIDER);
-
-    }
+//    @GetMapping("/getAllCustomers")
+//    public List<User>GetAllCustomers(){
+//      //  System.out.println("entered in Getallusers");
+//        return userRepository.findByRole(UserRoles.ROLE_PROVIDER);
+//
+//
+//
+//    }
 
 
     @GetMapping("/GetAllCustomers")
@@ -104,6 +106,10 @@ public class UserController {
             return "user not found";
         }
 
+    }
+    @GetMapping("/test")
+    public String test(Authentication auth) {
+        return auth.getName();
     }
 
 }
